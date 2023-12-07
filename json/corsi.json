@@ -1,0 +1,23 @@
+[
+  {
+    "nome_corso": "Enterprise Mobile Application Development",
+    "codice_corso": 11111,
+    "prof": "Rita Francese",
+    "orario_corso": "Luned\u00ec e Mercoled\u00ec, 14:00-16:00",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Data Science Fundamentals",
+    "codice_corso": 22222,
+    "prof": "Prof. Johnson",
+    "orario_corso": "Marted\u00ec e Gioved\u00ec, 10:00-12:00",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Compilatori",
+    "codice_corso": 33333,
+    "prof": "Gennaro Costagliola",
+    "orario_corso": "Marted\u00ec e Gioved\u00ec, 10:00-12:00",
+    "cfu": 9
+  }
+]

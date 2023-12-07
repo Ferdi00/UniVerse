@@ -1,0 +1,38 @@
+[
+  {
+    "giorno": "luned\u00ec",
+    "primo": "pasta al sugo",
+    "secondo": "pollo",
+    "contorno": "insalata"
+  },
+  {
+    "giorno": "marted\u00ec",
+    "primo": "pasta al pesto",
+    "secondo": "carne",
+    "contorno": "insalata"
+  },
+  {
+    "giorno": "mercoled\u00ec",
+    "primo": "pasta e patate",
+    "secondo": "pesce",
+    "contorno": "insalata"
+  },
+  {
+    "giorno": "gioved\u00ec",
+    "primo": "pasta e patate",
+    "secondo": "pesce",
+    "contorno": "insalata"
+  },
+  {
+    "giorno": "venerd\u00ec",
+    "primo": "pasta e patate",
+    "secondo": "pesce",
+    "contorno": "insalata"
+  },
+  {
+    "giorno": "sabato",
+    "primo": "pasta e patate",
+    "secondo": "pesce",
+    "contorno": "insalata"
+  }
+]
