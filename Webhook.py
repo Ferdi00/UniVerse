@@ -42,17 +42,66 @@ def webhook():
 
     if intent_display_name in Intent_corsi:
         corso = get_course_info(parameters)
-        if corso:
-            parameters.update(corso)
-        else:
-            print("corso non trovato")
-            return jsonify(
-                {
-                    "fulfillmentMessages": [
-                        {"text": {"text": ["Errore corso non trovato"]}}
-                    ]
-                }
-            )
+        if intent_display_name == "Lezioni_codice_corso":
+            if corso:
+                parameters.update(corso)
+            else:
+                print("corso non trovato")
+                return jsonify(
+                    {
+                        "fulfillmentMessages": [
+                            {"text": {"text": ["Sicuro che il nome inserito sia corretto? Per favore inserisci il nome del corso che desideri."]}}
+                        ]
+                    }
+                )
+        elif intent_display_name == "Lezioni_prof":
+            if corso:
+                parameters.update(corso)
+            else:
+                print("corso non trovato")
+                return jsonify(
+                    {
+                        "fulfillmentMessages": [
+                            {"text": {"text": ["Sicuro che il nome del corso sia corretto? Per favore inserisci il nome del corso che desideri."]}}
+                        ]
+                    }
+                )
+        elif intent_display_name == "Lezioni_orario":
+            if corso:
+                parameters.update(corso)
+            else:
+                print("corso non trovato")
+                return jsonify(
+                    {
+                        "fulfillmentMessages": [
+                            {"text": {"text": ["Sicuro che il nome del corso sia corretto? Per favore inserisci il nome del corso che desideri."]}}
+                        ]
+                    }
+                )
+        elif intent_display_name == "Lezioni_cfu":
+            if corso:
+                parameters.update(corso)
+            else:
+                print("corso non trovato")
+                return jsonify(
+                    {
+                        "fulfillmentMessages": [
+                            {"text": {"text": ["Sicuro che il nome del corso sia corretto? Per favore inserisci il nome del corso che desideri."]}}
+                        ]
+                    }
+                )
+        elif intent_display_name == "Lezioni_nome_corso":
+            if corso:
+                parameters.update(corso)
+            else:
+                print("corso non trovato")
+                return jsonify(
+                    {
+                        "fulfillmentMessages": [
+                            {"text": {"text": ["Sicuro che il codice del corso sia corretto? Per favore inserisci il codice del corso che desideri."]}}
+                        ]
+                    }
+                )
 
     elif intent_display_name in Intent_mensa:
         menu = get_canteen_info(parameters)
@@ -103,7 +152,7 @@ def get_course_info(parameters):
         corso = next((c for c in corsi if c.get("nome_corso", "") == nome_corso), None)
     elif codice_corso:
         corso = next(
-            (c for c in corsi if c.get("codice_corso", "") == int(codice_corso)), None
+            (c for c in corsi if c.get("codice_corso", "") == codice_corso), None
         )
     else:
         corso = None
