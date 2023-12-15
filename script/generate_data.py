@@ -8,6 +8,7 @@ corsi = [
         "prof": "Rita Francese",
         "orario_corso": "Lunedì e Mercoledì, 14:00-16:00",
         "cfu": 6,
+        "curriculum": "Data Science, Software Engineering ",
     },
     {
         "nome_corso": "Data Science Fundamentals",

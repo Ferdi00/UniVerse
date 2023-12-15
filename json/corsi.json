@@ -1,23 +1,394 @@
 [
   {
-    "nome_corso": "Enterprise Mobile Application Development",
-    "codice_corso": 11111,
-    "prof": "Rita Francese",
-    "orario_corso": "Luned\u00ec e Mercoled\u00ec, 14:00-16:00",
+    "nome_corso": "Affidabilit\u00E0 di Sistemi",
+    "codice_corso": "0522500001",
+    "prof": "Giorno Virginia",
+    "orario_corso": "Luned\u00ec 9:00-11:00 - Aula F4 [Edificio F2]\nVenerd\u00ec 11:00-13:00 - Aula F4 [Edificio F2]",
+    "curriculum": "Data Science & Machine Learning\nSoftware Engineering and IT Management",
     "cfu": 6
   },
   {
-    "nome_corso": "Data Science Fundamentals",
-    "codice_corso": 22222,
-    "prof": "Prof. Johnson",
-    "orario_corso": "Marted\u00ec e Gioved\u00ec, 10:00-12:00",
+    "nome_corso": "Algoritmi Avanzati",
+    "codice_corso": "0522500064",
+    "prof": "De Prisco Roberto",
+    "orario_corso": "Marted\u00ec 9:00-11:00 - Aula F4 [Edificio F2]\nMercoled\u00ec 9:00-11:00 - Aula P6 [Edificio F3]\nGioved\u00ec 11:00-13:00 - Aula F4 [Edificio F2]",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica",
     "cfu": 9
   },
   {
-    "nome_corso": "Compilatori",
-    "codice_corso": 33333,
-    "prof": "Gennaro Costagliola",
-    "orario_corso": "Marted\u00ec e Gioved\u00ec, 10:00-12:00",
+    "nome_corso": "Altre Conoscenze Utili per l\u0027Inserimento nel Mondo del Lavoro",
+    "codice_corso": "0522500045",
+    "prof": "Scarano Vittorio",
+    "orario_corso": "Mercoled\u00ec 13:30-15:30 - Aula P1 [Edificio F3]",
+    "curriculum": "Presente in tutti i Curriculum",
+    "cfu": 1
+  },
+  {
+    "nome_corso": "Architetture Distribuite per il Cloud",
+    "codice_corso": "0522500107",
+    "prof": "Cordasco Gennaro, Scarano Vittorio",
+    "orario_corso": "Primo semestre\nLuned\u00ec 9:00-12:00 - Aula P6 [Edificio F3]\nVenerd\u00ec 11:00-14:00 - Aula P6 [Edificio F3]",
+    "curriculum": "Cloud Computing",
     "cfu": 9
+  },
+  {
+    "nome_corso": "Basi di Dati II",
+    "codice_corso": "0522500005",
+    "prof": "Tortora Genoveffa",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning\nSicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 1
+  },
+  {
+    "nome_corso": "Cloud Computing",
+    "codice_corso": "0522500133",
+    "prof": "Pellegrino Maria Angela",
+    "orario_corso": "Primo semestre\nLuned\u00ec 9:00-11:00 - Aula F5 [Edificio F2]\nMarted\u00ec 11:00-13:00, Aula F5 [Edificio F2]",
+    "curriculum": "Cloud Computing\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Compilatori",
+    "codice_corso": "0522500134",
+    "prof": "Costagliola Gennaro",
+    "orario_corso": "Primo Semestre\nMarted\u00ec 13:30-15:30 - Aula F5 [Edificio F2]\nMercoled\u00ec 9:00-11:00 - Aula F5 [Edificio F2]\nGioved\u00ec 13:30-15:30 - Aula F5 [Edificio F2]",
+    "curriculum": "Cloud Computing\nSoftware Engineering and IT Management\nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Compressione Dati",
+    "codice_corso": "0522500077",
+    "prof": "Carpentieri Brudo",
+    "orario_corso": "Primo Semestre\nMarted\u00ec 15:30-17:30 - Aula F5 [Edificio F2]\nVenerd\u00ec 9:00-11:00 - Aula F4 [Edificio F2]",
+    "curriculum": "Cloud Computing\nSicurezza Informatica",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Computer Assisted Audio Production",
+    "codice_corso": "0522500147",
+    "prof": "Distasi Riccardo",
+    "orario_corso": "Primo semestre\nLuned\u00ec 15:30-17:30 - Aula F4 [Edificio F2]\nGioved\u00ec 15:30-17:30 - Laboratorio Sammet [Edificio F2]",
+    "curriculum": "Presente in tutti i Curriculum",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Elementi di Crittografia",
+    "codice_corso": "0522500080",
+    "prof": "D\u0027arco Paolo",
+    "orario_corso": "Primo semestre\nLuned\u00ec 11:00-13:00 - Aula F4 [Edificio F2]\nMercoled\u00ec 11:00-13:00 - Aula F5 [Edificio F2]\nGioved\u00ec 9:00-11:00 - Aula F4 [Edificio F2]",
+    "curriculum": "Sicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Embedded Systems",
+    "codice_corso": "0522500126",
+    "prof": "Scanniello Giuseppe",
+    "orario_corso": "Primo semestre\nMarted\u00ec 15:30-17:30 - Laboratorio P13 [Edificio F3]\nGioved\u00ec 15:30-17:30 - Laboratorio P13 [Edificio F3]",
+    "curriculum": "Software Engineering and IT Management \nInternet of Things",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Enterprise Mobile Application Development",
+    "codice_corso": "0522500088",
+    "prof": "Francese Rita",
+    "orario_corso": "Primo Semestre\nLuned\u00ec 12:00-14:00 - Aula P6 [Edificio F3]\nMercoled\u00ec 12:00-14:00 - Laboratorio Sammet [Edificio F2]",
+    "curriculum": "Cloud Computing - Software Engineering and IT Management - Data Science & Machine Learning",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Financial Computing e Tecnologie per l\u0027High Frequency Trading",
+    "codice_corso": "0522500090",
+    "prof": "Iovane Gerardo",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Fondamenti di Data Science e Machine Learning",
+    "codice_corso": "0522500135",
+    "prof": "Polese Giuseppe",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSoftware Engineering and IT Management\nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Fondamenti di Visione Artificiale e Biometria",
+    "codice_corso": "0522500084",
+    "prof": "Nappi Michele",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning\nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Geographical Information Systems",
+    "codice_corso": "0522500086",
+    "prof": "Sebillo Monica Maria Lucia, Tucci Maurizio",
+    "orario_corso": "Primo semestre\nMarted\u00ec 15:30-17:30 - Laboratorio Sammet [Edificio F2]\nMercoled\u00ec 15:30-17:30 - Aula F4 [Edificio F2]",
+    "curriculum": "Data Science & Machine Learning\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Gestione dei Progetti Software",
+    "codice_corso": "0522500008",
+    "prof": "Ferrucci Filomena",
+    "orario_corso": "Primo semestre\nLuned\u00ec 15:30-17:30 - Aula P6 [Edificio F3]\nMarted\u00ec 13:30-15:30 - Aula P6 [Edificio F3]\nVenerd\u00ec 9:00-11:00 - Aula P6 [Edificio F3]",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "High Performance Computing",
+    "codice_corso": "0522500136",
+    "prof": "Cosenza Biagio",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Human Computer Interaction and Experience Design in the Internet of Things",
+    "codice_corso": "0522500124",
+    "prof": "Vitiello Giuliana",
+    "orario_corso": "Primo semestre\nLuned\u00ec 13:00-15:00 - Aula F1 [Edificio F2]\nMarted\u00ec 13:30-15:30 - Aula F4 [Edificio F2]",
+    "curriculum": "Data Science & Machine Learning\nInternet of Things",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Information Visualization",
+    "codice_corso": "0522500098",
+    "prof": "Abate Andrea Francesco",
+    "orario_corso": "Primo semestre\nMarted\u00ec 13:30-15:30 - Laboratorio Sammet [Edificio F2]\nGioved\u00ec 13:30-15:30 - Laboratorio Sammet [Edificio F2]",
+    "curriculum": "Data Science & Machine Learning",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Informazione Quantistica e Computazione Quantistica",
+    "codice_corso": "0522500127",
+    "prof": "Illuminati Fabrizio",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Presente in tutti i Curriculum",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Ingegneria, Gestione ed Evoluzione del Software",
+    "codice_corso": "0522500083",
+    "prof": "De Lucia Andrea",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Sicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Intelligent Web",
+    "codice_corso": "0522500137",
+    "prof": "Sebillo Monica Maria Lucia",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Intelligenza Artificiale",
+    "codice_corso": "0522500093",
+    "prof": "Deufemia Vincenzo",
+    "orario_corso": "Primo semestre\nGioved\u00ec 14:00-17:00 - Aula P6 [Edificio F3]\nVenerd\u00ec 14:30-17:30 - Aula P6 [Edificio F3]",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Interactive System Design",
+    "codice_corso": "0522500103",
+    "prof": "Fuccella Vittorio",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning\nSicurezza Informatica",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Interazione Uomo Macchina e Usabilit\u00E0 del Software",
+    "codice_corso": "0522500013",
+    "prof": "Vitiello Giuliana",
+    "orario_corso": "Primo semestre\nLuned\u00ec 15:30-17:30 - Aula F5 [Edificio F2]\nVenerd\u00ec 13:30-15:30 - Laboratorio Hopper [Edificio F2]",
+    "curriculum": "Software Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "International School on IoT",
+    "codice_corso": "0522500122",
+    "prof": "De Lucia Andrea, Palmieri Francesco, Polese Giuseppe, Scarano Vittorio",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Internet of Things",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Internet of Things",
+    "codice_corso": "0522500144",
+    "prof": "Palmieri Francesco",
+    "orario_corso": "Primo semestre\nMercoled\u00ec 11:00-13:00 - Aula P6 [Edificio F3]\nVenerd\u00ec 11:00-13:00 - Aula F5 [Edificio F2]",
+    "curriculum": "Internet of Things\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "IoT Security",
+    "codice_corso": "0522500140",
+    "prof": "Esposito Christiancarmine",
+    "orario_corso": "Primo semestre\nLuned\u00ec 9:00-11:00 - Laboratorio Hopper [Edificio F2]\nMarted\u00ec 11:00-13:00 - Laboratorio Hopper [Edificio F2]",
+    "curriculum": "Internet of Things\nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Lab of IoT",
+    "codice_corso": "0522500123",
+    "prof": "Ficco Massimo",
+    "orario_corso": "Primo semestre\nMarted\u00ec 9:00-11:00 - Laboratorio P13 [Edificio F3]\nMercoled\u00ec 9:00-11:00 - Laboratorio P13 [Edificio F3]",
+    "curriculum": "Internet of Things",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Metodi di Ottimizzazione",
+    "codice_corso": "0522500054",
+    "prof": "Carrabs Francesco, Cerulli Raffaele",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Metodi Numerici per l\u0027Informatica",
+    "codice_corso": "0522500099",
+    "prof": "Cardone Angelamaria",
+    "orario_corso": "Primo semestre\nMarted\u00ec 11:00-13:00 - Laboratorio P6 [Edificio F3]\nMercoled\u00ec 15:30-17:30 - Laboratorio P13 [Edificio F3]",
+    "curriculum": "Data Science & Machine Learning\nCloud Computing",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Metriche e Qualit\u00E0 del Software",
+    "codice_corso": "0522500150",
+    "prof": "De Prisco Roberto, Zaccagnino Rocco",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Presente in tutti i Curriculum",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Musica Algoritmica e Sound Computing",
+    "codice_corso": "0522500087",
+    "prof": "Gravino Carmine",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Natural Language Processing",
+    "codice_corso": "0522500138",
+    "prof": "Caruccio Loredana, Tortora Genoveffa",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Penetration Testing and Ethical Hacking",
+    "codice_corso": "0522500081",
+    "prof": "Castiglione Arcangelo",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Sicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Programmazione Concorrente, Parallela e su Cloud",
+    "codice_corso": "0522500102",
+    "prof": "Spagnuolo Carmine",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nSoftware Engineering and IT Management\nSicurezza Informatica",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Programmazione Sicura",
+    "codice_corso": "0522500065",
+    "prof": "Masucci Barbara",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Sicurezza Informatica\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Reti Geografiche: Struttura, Analisi e Prestazioni",
+    "codice_corso": "0522500114",
+    "prof": "Malandrino Delfina",
+    "orario_corso": "Primo semestre\nLuned\u00ec 11:00-13:00 - Aula F5 [Edificio F2]\nMercoled\u00ec 11:00-13:00 - Laboratorio P13 [Edificio F3]\nGioved\u00ec 9:00-11:00 - Aula F5 [Edificio F2]",
+    "curriculum": "Cloud Computing",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Reti Sociali",
+    "codice_corso": "0522500072",
+    "prof": "Gargano Luisa, Rescigno Adele Anna",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning \nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Robot Programming",
+    "codice_corso": "0522500125",
+    "prof": "Battistoni Pietro",
+    "orario_corso": "Primo semestre\nGioved\u00ec 11:00-14:00 - Aula P6 [Edificio F3]",
+    "curriculum": "Data Science & Machine Learning\nInternet of Things",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Servless Computing for IoT",
+    "codice_corso": "0522500120",
+    "prof": "Scarano Vittorio",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nInternet of Things",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Sicurezza dei Dati",
+    "codice_corso": "0522500062",
+    "prof": "De Santis Alfredo",
+    "orario_corso": "Primo semestre\nLuned\u00ec 13:30-15:30 - Aula F5 [Edificio F2]\nMarted\u00ec 9:00-11:00 - Aula F5 [Edificio F2]\nGioved\u00ec 11:00-13:00 - Aula F5 [Edificio F2]",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSoftware Engineering and IT Management\nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Software Dependability",
+    "codice_corso": "0522500119",
+    "prof": "Di Nucci Dario",
+    "orario_corso": "Primo semestre\nMarted\u00ec 11:00-13:00 - Laboratorio P13 [Edificio F3]\nVenerd\u00ec 9:00-11:00 - Aula F5 [Edificio F2]",
+    "curriculum": "Internet of Things\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Software Engineering for Artificial Intelligence",
+    "codice_corso": "0522500139",
+    "prof": "Palomba Fabio",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Data Science & Machine Learning\nSoftware Engineering and IT Management",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Statistica e Analisi dei Dati",
+    "codice_corso": "0522500094",
+    "prof": "Cirillo Stefano, Di Biasi Luigi",
+    "orario_corso": "Primo semestre\nMarted\u00ec 11:00-13:00 - Aula F4 [Edificio F2]\nGioved\u00ec 9:00-11:00 - Aula P6 [Edificio F3]\nVenerd\u00ec 13:30-15:30 - Aula F5 [Edificio F2]",
+    "curriculum": "Data Science & Machine Learning\nSoftware Engineering and IT Management",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Strumenti Formali per la Bioinformatica",
+    "codice_corso": "0522500145",
+    "prof": "De Felice Clelia, Zaccagnino Rocco, Zizza Rosalba",
+    "orario_corso": "Primo semestre\nMarted\u00ec 15:30-17:30 - Aula P6 [Edificio F3]\nMercoled\u00ec 13:30-15:30 - Aula P6 [Edificio F3]\nGioved\u00ec 15:30-17:30 - Aula F5 [Edificio F2]",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica",
+    "cfu": 9
+  },
+  {
+    "nome_corso": "Tecniche Automatiche per la Correttezza del Software",
+    "codice_corso": "0522500076",
+    "prof": "La Torre Salvatore",
+    "orario_corso": "Primo semestre\nLuned\u00ec 13:30-15:30 - Aula F4 [Edificio F2]\nMercoled\u00ec 15:30-17:30 - Aula F5 [Edificio F2]",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica",
+    "cfu": 6
+  },
+  {
+    "nome_corso": "Teoria dell\u0027Informazione",
+    "codice_corso": "0522500148",
+    "prof": "Vaccaro Ugo",
+    "orario_corso": "Secondo semestre\nOrario ancora da definire",
+    "curriculum": "Cloud Computing\nData Science & Machine Learning\nSicurezza Informatica",
+    "cfu": 6
   }
 ]

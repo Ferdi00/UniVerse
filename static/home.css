@@ -1,0 +1,9 @@
+.you-message {
+  color: #28a745; /* Colore verde per "You" */
+  padding-bottom: 10px;
+}
+
+.dialogflow-message {
+  color: #007bff; /* Colore blu per "Dialogflow" */
+  padding-bottom: 10px;
+}

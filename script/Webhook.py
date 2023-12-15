@@ -1,16 +1,18 @@
 import json
 import locale
 from datetime import datetime
+from google.cloud import dialogflow_v2
+from google.oauth2 import service_account
+from flask import Flask, jsonify, request, render_template
+import os
 
-from flask import Flask, jsonify, request
-
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../static", template_folder="../templates")
 
 
 # Route per il server Flask
 @app.route("/", methods=["GET", "POST"])
 def home():
-    return "All is well.", 200
+    return render_template("home.html")
 
 
 # Route per il server Flask
@@ -19,8 +21,10 @@ def webhook():
     body = request.get_json()
     # Estrai l'array di outputContexts dal corpo della richiesta
 
-    #contesti di output della chiamata (per ora non utilizzati)
+    # contesti di output della chiamata (per ora non utilizzati)
     output_contexts = body["queryResult"]["outputContexts"]
+
+    # print(output_contexts)
 
     parameters = get_parameters(body)
     # stampa parametri
@@ -28,19 +32,22 @@ def webhook():
     # for key, value in parameters.items():
     # print(f"{key}: {value}")
 
-    #nome intent richiesta corrente
+    # nome intent richiesta corrente
     intent_display_name = body["queryResult"]["intent"]["displayName"]
 
+    print(intent_display_name)
     Intent_corsi = {
         "Lezioni_cfu",
         "Lezioni_codice_corso",
         "Lezioni_nome_corso",
         "Lezioni_orario",
         "Lezioni_prof",
+        "Curriculum",
     }
     Intent_mensa = {"mensa"}
 
     if intent_display_name in Intent_corsi:
+        print("ho trovato l'intent corsi")
         corso = get_course_info(parameters)
         if corso:
             parameters.update(corso)
@@ -55,6 +62,7 @@ def webhook():
             )
 
     elif intent_display_name in Intent_mensa:
+        print("ho trovato l'intent mensa")
         menu = get_canteen_info(parameters)
         if menu:
             parameters.update(menu)
@@ -73,7 +81,7 @@ def webhook():
             "outputContexts": [
                 {
                     "name": f"projects/{body['session'].split('/')[1]}/agent/sessions/{body['session'].split('/')[-1]}/contexts/session-vars",
-                    "lifespanCount": 1,
+                    "lifespanCount": 5,
                     "parameters": parameters,
                 }
             ],
@@ -84,6 +92,52 @@ def webhook():
             },
         }
     )
+
+
+LANGUAGE_CODE = "it-IT"
+
+
+@app.route("/Chatbot", methods=["POST"])
+def send_text_message_to_dialogflow():
+    print("ho chiamato correttamente l'api")
+    try:
+        body = request.get_json()
+        text_message = body["message"]
+
+        # Crea le credenziali dal percorso del file JSON (auth/auth.json)
+        credentials_path = os.path.join(
+            os.path.dirname(__file__), "../auth", "auth.json"
+        )
+        credentials = service_account.Credentials.from_service_account_file(
+            credentials_path
+        )
+        # Estrai il campo project_id dal file JSON delle credenziali
+        project_id = credentials.project_id
+
+        session_client = dialogflow_v2.SessionsClient(credentials=credentials)
+        session_id = "un_id_di_sessione_unico"
+        session_path = session_client.session_path(project_id, session_id)
+
+        # The text query request.
+        request_dialogflow = {
+            "session": session_path,
+            "query_input": {
+                "text": {
+                    "text": text_message,
+                    "language_code": LANGUAGE_CODE,
+                }
+            },
+        }
+
+        responses = session_client.detect_intent(request=request_dialogflow)
+        # Estrai il testo di fulfillment dalla risposta
+        fulfillment_text = responses.query_result.fulfillment_text
+
+        # Restituisci solo il testo di fulfillment come risposta JSON
+        return jsonify({"message": fulfillment_text})
+    except Exception as err:
+        print("DialogFlow.send_text_message_to_dialogflow ERROR:", err)
+        return jsonify({"error": str(err)}), 500
 
 
 # Funzione per estrarre i parametri dalla richiesta JSON
