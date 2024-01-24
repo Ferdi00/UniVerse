@@ -3,7 +3,6 @@ import locale
 import os
 from datetime import datetime
 import uuid
-
 from flask import Flask, jsonify, render_template, request
 from google.cloud import dialogflow_v2
 from google.oauth2 import service_account
