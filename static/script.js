@@ -7,10 +7,13 @@ async function sendMessage() {
     appendMessage("You", message, "you-message"); // Aggiunta classe "you-message"
 
     try {
+      // Supponendo che tu abbia ottenuto sessionId in qualche modo
+
+      const sessionId = getSessionId();
       // Invia il messaggio a Dialogflow attraverso il frontend
-      const responseFromDialogflow = await sendToDialogflow(message);
+      const responseFromDialogflow = await sendToDialogflow(message, sessionId);
       const dialogflowResponse = responseFromDialogflow.message;
-      appendMessage("Universe", dialogflowResponse, "dialogflow-message"); // Aggiunta classe "dialogflow-message"
+      appendMessage("Universe", dialogflowResponse, "dialogflow-message");
     } catch (error) {
       console.error("Errore nella gestione dei messaggi:", error);
     }
@@ -21,13 +24,13 @@ async function sendMessage() {
 }
 
 // Funzione per inviare il messaggio a Dialogflow attraverso il frontend
-async function sendToDialogflow(message) {
+async function sendToDialogflow(message, sessionId) {
   const response = await fetch("/Chatbot", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ message: message }),
+    body: JSON.stringify({ message: message, session: sessionId }),
   });
 
   if (!response.ok) {

@@ -1,12 +1,17 @@
 import json
 import locale
+import os
 from datetime import datetime
+import uuid
+
+from flask import Flask, jsonify, render_template, request
 from google.cloud import dialogflow_v2
 from google.oauth2 import service_account
-from flask import Flask, jsonify, request, render_template
-import os
 
 app = Flask(__name__, static_folder="../static", template_folder="../templates")
+
+# Dizionario per memorizzare i parametri della sessione per ciascun utente
+session_parameters_dict = {}
 
 
 # Route per il server Flask
@@ -19,23 +24,14 @@ def home():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     body = request.get_json()
-    # Estrai l'array di outputContexts dal corpo della richiesta
-
-    # contesti di output della chiamata (per ora non utilizzati)
     output_contexts = body["queryResult"]["outputContexts"]
+    request_parameters = get_parameters(body)
+    session_id = body["session"]
 
-    # print(output_contexts)
+    # Recupera o crea il dizionario dei parametri della sessione per l'utente corrente
+    session_parameters = session_parameters_dict.get(session_id, {})
 
-    parameters = get_parameters(body)
-    # stampa parametri
-    # print("Parametri:")
-    # for key, value in parameters.items():
-    # print(f"{key}: {value}")
-
-    # nome intent richiesta corrente
     intent_display_name = body["queryResult"]["intent"]["displayName"]
-
-    print(intent_display_name)
     Intent_corsi = {
         "Lezioni_cfu",
         "Lezioni_codice_corso",
@@ -46,49 +42,74 @@ def webhook():
     }
     Intent_mensa = {"mensa"}
 
+    if intent_display_name == "prova":
+        return jsonify(
+            {
+                "fulfillmentMessages": [
+                    {"text": {"text": ["questa è una risposta di prova"]}}
+                ]
+            }
+        )
+
     if intent_display_name in Intent_corsi:
-        print("ho trovato l'intent corsi")
-        corso = get_course_info(parameters)
+        corso = get_course_info(request_parameters)
+        if not corso:
+            # Se il corso non è stato trovato nei parametri della richiesta, prova con quelli della sessione
+            corso = get_course_info(session_parameters)
+
         if corso:
-            parameters.update(corso)
+            request_parameters.update(corso)
         else:
             print("corso non trovato")
+            filtered_request_parameters = filter_non_empty_parameters(
+                request_parameters
+            )
+            # Aggiorna solo se ci sono nuovi parametri non vuoti
+            if filtered_request_parameters:
+                session_parameters.update(filtered_request_parameters)
             return jsonify(
                 {
                     "fulfillmentMessages": [
-                        {"text": {"text": ["Errore corso non trovato"]}}
+                        {
+                            "text": {
+                                "text": [
+                                    "Mi dispiace sembra che non sia riuscito a trovare il corso desiderato, potresti essere più preciso? :) "
+                                ]
+                            }
+                        }
                     ]
                 }
             )
 
     elif intent_display_name in Intent_mensa:
-        print("ho trovato l'intent mensa")
-        menu = get_canteen_info(parameters)
+        menu = get_canteen_info(request_parameters)
         if menu:
-            parameters.update(menu)
+            request_parameters.update(menu)
         else:
             print("menu non trovato")
             return jsonify(
-                {
-                    "fulfillmentMessages": [
-                        {"text": {"text": ["Errore menu non trovato"]}}
-                    ]
-                }
+                {"query_text": [{"text": {"text": ["Errore menu non trovato"]}}]}
             )
+
+    filtered_request_parameters = filter_non_empty_parameters(request_parameters)
+    if filtered_request_parameters:
+        # Aggiorna il dizionario dei parametri della sessione per l'utente corrente
+        session_parameters.update(filtered_request_parameters)
+        session_parameters_dict[session_id] = session_parameters
 
     return jsonify(
         {
             "outputContexts": [
                 {
-                    "name": f"projects/{body['session'].split('/')[1]}/agent/sessions/{body['session'].split('/')[-1]}/contexts/session-vars",
+                    "name": f"projects/{body['session'].split('/')[1]}/agent/sessions/{body['session'].split('/')[-1]}/contexts/sessione",
                     "lifespanCount": 5,
-                    "parameters": parameters,
+                    "parameters": session_parameters,
                 }
             ],
             "followupEventInput": {
                 "name": "followup_intent_contesto_aggiornato",
                 "languageCode": "it",
-                "parameters": parameters,
+                "parameters": session_parameters,
             },
         }
     )
@@ -104,6 +125,9 @@ def send_text_message_to_dialogflow():
         body = request.get_json()
         text_message = body["message"]
 
+        # Utilizza l'ID di sessione fornito o genera uno nuovo
+        session_id = body.get("session", str(uuid.uuid4()))
+
         # Crea le credenziali dal percorso del file JSON (auth/auth.json)
         credentials_path = os.path.join(
             os.path.dirname(__file__), "../auth", "auth.json"
@@ -115,7 +139,6 @@ def send_text_message_to_dialogflow():
         project_id = credentials.project_id
 
         session_client = dialogflow_v2.SessionsClient(credentials=credentials)
-        session_id = "un_id_di_sessione_unico"
         session_path = session_client.session_path(project_id, session_id)
 
         # The text query request.
@@ -130,11 +153,17 @@ def send_text_message_to_dialogflow():
         }
 
         responses = session_client.detect_intent(request=request_dialogflow)
-        # Estrai il testo di fulfillment dalla risposta
-        fulfillment_text = responses.query_result.fulfillment_text
-
-        # Restituisci solo il testo di fulfillment come risposta JSON
-        return jsonify({"message": fulfillment_text})
+        if responses:
+            print(responses)
+            fulfillment_text = responses.query_result.fulfillment_messages[0].text.text[
+                0
+            ]
+            print("testo risposta: ", fulfillment_text)
+            print("sessione : ", session_id)
+            # Restituisci il testo di fulfillment e l'ID di sessione come risposta JSON
+            return jsonify({"message": fulfillment_text, "session": session_id})
+        else:
+            print("risposta non valida")
     except Exception as err:
         print("DialogFlow.send_text_message_to_dialogflow ERROR:", err)
         return jsonify({"error": str(err)}), 500
@@ -143,6 +172,11 @@ def send_text_message_to_dialogflow():
 # Funzione per estrarre i parametri dalla richiesta JSON
 def get_parameters(body):
     return body.get("queryResult", {}).get("parameters", {})
+
+
+def filter_non_empty_parameters(parameters):
+    # Filtra solo i parametri non vuoti
+    return {key: value for key, value in parameters.items() if value}
 
 
 # Funzione per ottenere informazioni sul corso in base ai parametri forniti
@@ -208,7 +242,3 @@ def get_day_of_week(date_string):
 
     return day_of_week
 
-
-# Avvia il server Flask
-if __name__ == "__main__":
-    app.run(debug=True)

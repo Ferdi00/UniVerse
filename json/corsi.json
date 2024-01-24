@@ -51,7 +51,7 @@
     "nome_corso": "Compilatori",
     "codice_corso": "0522500134",
     "prof": "Costagliola Gennaro",
-    "orario_corso": "Primo Semestre\nMarted\u00ec 13:30-15:30 - Aula F5 [Edificio F2]\nMercoled\u00ec 9:00-11:00 - Aula F5 [Edificio F2]\nGioved\u00ec 13:30-15:30 - Aula F5 [Edificio F2]",
+    "orario_corso": "Marted\u00ec 13:30-15:30 - Aula F5 [Edificio F2], il \nMercoled\u00ec alle 9:00-11:00 in Aula F5 [Edificio F2]\n, il Gioved\u00ec alle 13:30-15:30 in Aula F5 [Edificio F2]",
     "curriculum": "Cloud Computing\nSoftware Engineering and IT Management\nSicurezza Informatica",
     "cfu": 9
   },
@@ -84,7 +84,7 @@
     "codice_corso": "0522500126",
     "prof": "Scanniello Giuseppe",
     "orario_corso": "Primo semestre\nMarted\u00ec 15:30-17:30 - Laboratorio P13 [Edificio F3]\nGioved\u00ec 15:30-17:30 - Laboratorio P13 [Edificio F3]",
-    "curriculum": "Software Engineering and IT Management \nInternet of Things",
+    "curriculum": "Software Engineering and IT Management - Internet of Things",
     "cfu": 6
   },
   {

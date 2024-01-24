@@ -1,78 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" type="text/css" href="../static/home.css">
-     <script src="../static/script.js"></script>
+    <script src="../static/script.js"></script>
+    <script src="../static/recordAudio.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Simulator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 20px;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a; /* Colore di sfondo scuro */
-            color: #fff; /* Colore del testo bianco */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* Altezza della viewport */
-        }
-
-        .chat-container {
-            width: 700px;
-            border: 1px solid #444; /* Bordo scuro */
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #333; /* Colore di sfondo del riquadro chat */
-        }
-
-        .chat-messages {
-            padding: 15px;
-            height: 500px;
-            overflow-y: scroll;
-        }
-
-        .user-input {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #444; /* Colore di sfondo della parte di input */
-            border-top: 1px solid #555; /* Bordo superiore più scuro */
-        }
-
-        input {
-            flex: 1;
-            padding: 8px;
-            margin-right: 8px;
-            border: 1px solid #555; /* Bordo input più scuro */
-            background-color: #666; /* Colore di sfondo dell'input più scuro */
-            color: #fff; /* Colore del testo bianco */
-        }
-
-        button {
-            padding: 8px;
-            cursor: pointer;
-            background-color: #888; /* Colore di sfondo del pulsante più scuro */
-            color: #fff; /* Colore del testo bianco */
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
 </head>
+
 <body>
+    <div class="session-id" id="sessionIdDisplay"></div>
     <div class="chat-container">
+        <!-- Aggiunto un nuovo elemento per visualizzare l'ID di sessione -->
+        
         <div class="chat-messages" id="chatMessages">
-            
         </div>
         <div class="user-input">
             <input type="text" id="userInput" placeholder="Type your message...">
             <button onclick="sendMessage()">Send</button>
+            <button id="startRecording">Start</button>
+            <button id="stopRecording">Stop</button>
         </div>
+        <div class="Audio">
+            <p id="isRecording">Click start button to record</p>
+            <audio src="" id="audioElement" controls></audio>
+        </div>
+        <button id="convertButton">Converti</button>
     </div>
-   
+
+    <script>
+        function startSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition(); // Chrome supporta il prefisso "webkit"
+            recognition.lang = 'it-IT';  // Imposta la lingua, ad esempio 'it-IT' per l'italiano
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                console.log('Testo riconosciuto:', transcript);
+
+                // Qui puoi inviare il testo riconosciuto al tuo server o eseguire altre operazioni
+            };
+
+            recognition.onerror = function (event) {
+                console.error('Errore durante il riconoscimento vocale:', event.error);
+            };
+
+            recognition.onend = function () {
+                console.log('Riconoscimento vocale terminato.');
+            };
+
+            recognition.start();
+        }
+
+        // Chiamata alla funzione quando si fa clic sul pulsante di conversione
+        document.getElementById('convertButton').addEventListener('click', function () {
+            startSpeechRecognition();
+        });
+
+        // Imposta l'ID di sessione nell'elemento display
+        document.getElementById('sessionIdDisplay').innerText = 'sessionId: ' + getSessionId(); 
+
+        // Funzione per ottenere l'ID di sessione dal local storage o generarne uno nuovo
+        function getSessionId() {
+            const storedSessionId = localStorage.getItem('sessionId');
+
+            if (storedSessionId) {
+                return storedSessionId;
+            } else {
+                const newSessionId = generateSessionId();
+                localStorage.setItem('sessionId', newSessionId);
+                return newSessionId;
+            }
+        }
+
+        // Funzione per generare un nuovo ID di sessione
+        function generateSessionId() {
+            return Math.random().toString(36).substr(2, 9);
+        }
+    </script>
+
 </body>
+
 </html>
- 
