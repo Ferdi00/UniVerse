@@ -241,3 +241,8 @@ def get_day_of_week(date_string):
 
     return day_of_week
 
+    
+
+# Avvia il server Flask
+if __name__ == "__main__":
+    app.run(debug=True)
