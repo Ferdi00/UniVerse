@@ -6,6 +6,8 @@ import uuid
 from flask import Flask, jsonify, render_template, request
 from google.cloud import dialogflow_v2
 from google.oauth2 import service_account
+from waitress import serve
+
 
 app = Flask(__name__, static_folder="../static", template_folder="../templates")
 
@@ -19,17 +21,27 @@ def home():
     return render_template("home.html")
 
 
+@app.route("/prova", methods=["POST"])
+def prova():
+    return jsonify(
+        {
+            "fulfillmentMessages": [
+                {"text": {"text": ["questa è una risposta di prova"]}}
+            ]
+        }
+    )
+
+
 # Route per il server Flask
 @app.route("/webhook", methods=["POST"])
 def webhook():
+    print("ho chiamato il webhook")
     body = request.get_json()
-    output_contexts = body["queryResult"]["outputContexts"]
     request_parameters = get_parameters(body)
     session_id = body["session"]
 
     # Recupera o crea il dizionario dei parametri della sessione per l'utente corrente
     session_parameters = session_parameters_dict.get(session_id, {})
-
     intent_display_name = body["queryResult"]["intent"]["displayName"]
     Intent_corsi = {
         "Lezioni_cfu",
@@ -57,6 +69,7 @@ def webhook():
             corso = get_course_info(session_parameters)
 
         if corso:
+            print("ho trovato il corso e questo è il risultato:", corso)
             request_parameters.update(corso)
         else:
             print("corso non trovato")
@@ -153,7 +166,6 @@ def send_text_message_to_dialogflow():
 
         responses = session_client.detect_intent(request=request_dialogflow)
         if responses:
-            print(responses)
             fulfillment_text = responses.query_result.fulfillment_messages[0].text.text[
                 0
             ]
@@ -185,7 +197,10 @@ def get_course_info(parameters):
 
     # Carica i dati dei corsi dal file JSON
     corsi = load_json("corsi.json")
-
+    if corsi:
+        print("corsi non è null")
+    else:
+        print("l'oggetto corsi è null")
     if nome_corso:
         corso = next((c for c in corsi if c.get("nome_corso", "") == nome_corso), None)
     elif codice_corso:
@@ -220,8 +235,17 @@ def get_canteen_info(parameters):
 
 # Funzione per caricare i dati dei corsi dal file JSON
 def load_json(file_name):
-    with open(f"json/{file_name}", "r") as json_file:
-        return json.load(json_file)
+    try:
+        with open(f"json/{file_name}", "r") as json_file:
+            return json.load(json_file)
+    except FileNotFoundError:
+        print(f"Errore: Il file {file_name} non esiste.")
+        # Puoi scegliere di sollevare un'eccezione qui se vuoi gestire l'errore in un modo specifico
+        # raise FileNotFoundError(f"Il file {file_name} non esiste.")
+    except Exception as e:
+        print(f"Errore sconosciuto durante il caricamento del file {file_name}: {e}")
+        # Puoi scegliere di sollevare un'eccezione qui se vuoi gestire l'errore in un modo specifico
+        # raise e
 
 
 # Funzione per ottenere il nome del giorno della settimana da una stringa di data
@@ -241,8 +265,6 @@ def get_day_of_week(date_string):
 
     return day_of_week
 
-    
-
 # Avvia il server Flask
 if __name__ == "__main__":
-    app.run(debug=True)
+    serve(app, host="0.0.0.0", port=50100, threads=3, url_prefix="/universe")
