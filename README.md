@@ -22,5 +22,4 @@ The UniVerse project aims to develop a ChatBot for university students capable o
 - Currently supports the Italian language.
 
 ## Web Interface
-[universe-lmr2.onrender.com](universe-lmr2.onrender.com)
-
+[universe-lmr2.onrender.com](https://universe-lmr2.onrender.com/)
