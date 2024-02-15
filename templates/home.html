@@ -1,85 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="stylesheet" type="text/css" href="../static/home.css">
-    <script src="../static/script.js"></script>
-    <script src="../static/recordAudio.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/home.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chatbot Simulator</title>
-</head>
+  </head>
 
-<body>
-    <div class="session-id" id="sessionIdDisplay"></div>
-    <div class="chat-container">
-        <!-- Aggiunto un nuovo elemento per visualizzare l'ID di sessione -->
-        
-        <div class="chat-messages" id="chatMessages">
+  <body>
+   <section class="logo">
+    <div class="pre">Uni</div>
+    <div class="dopo">Verse</div>
+   </section> 
+    <section class="msger">
+      <header class="msger-header">
+        <div class="msger-header-title">
+          <i class="fas fa-comment-alt"></i> Chat with Universe
         </div>
-        <div class="user-input">
-            <input type="text" id="userInput" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
-            <button id="startRecording">Start</button>
-            <button id="stopRecording">Stop</button>
+        <div class="msger-header-options">
+          <span><i class="fas fa-cog"></i></span>
         </div>
-        <div class="Audio">
-            <p id="isRecording">Click start button to record</p>
-            <audio src="" id="audioElement" controls></audio>
+      </header>
+
+      <main class="msger-chat">
+        <div class="msg left-msg">
+          <div
+            class="msg-img"
+            style="
+              background-image: url(../static/avatar.jpeg);
+            "
+          ></div>
+
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">Universe</div>
+              <div class="msg-info-time">10:30</div>
+            </div>
+
+            <div class="msg-text">
+              Ciao sono Universe il tuo assistente universitario. Se hai qualche domanda chiedi pure! 😄
+            </div>
+          </div>
         </div>
-        <button id="convertButton">Converti</button>
-    </div>
+
+        </div>
+      </main>
+
+      <form class="msger-inputarea" id="messageForm">
+    <input
+      type="text"
+      class="msger-input"
+      id="messageInput"
+      placeholder="Enter your message..."
+    />
+    <button type="submit" id="sendBtn" class="msger-send-btn">Send</button>
+</form>
+    </section>
+     <div class="session-id" id="sessionIdDisplay"></div>
 
     <script>
-        function startSpeechRecognition() {
-            const recognition = new webkitSpeechRecognition(); // Chrome supporta il prefisso "webkit"
-            recognition.lang = 'it-IT';  // Imposta la lingua, ad esempio 'it-IT' per l'italiano
+      // Imposta l'ID di sessione nell'elemento display
+      document.getElementById("sessionIdDisplay").innerText =
+        "sessionId: " + getSessionId();
 
-            recognition.onresult = function (event) {
-                const transcript = event.results[0][0].transcript;
-                console.log('Testo riconosciuto:', transcript);
+      // Funzione per ottenere l'ID di sessione dal local storage o generarne uno nuovo
+      function getSessionId() {
+        const storedSessionId = localStorage.getItem("sessionId");
 
-                // Qui puoi inviare il testo riconosciuto al tuo server o eseguire altre operazioni
-            };
-
-            recognition.onerror = function (event) {
-                console.error('Errore durante il riconoscimento vocale:', event.error);
-            };
-
-            recognition.onend = function () {
-                console.log('Riconoscimento vocale terminato.');
-            };
-
-            recognition.start();
+        if (storedSessionId) {
+          return storedSessionId;
+        } else {
+          const newSessionId = generateSessionId();
+          localStorage.setItem("sessionId", newSessionId);
+          return newSessionId;
         }
+      }
 
-        // Chiamata alla funzione quando si fa clic sul pulsante di conversione
-        document.getElementById('convertButton').addEventListener('click', function () {
-            startSpeechRecognition();
-        });
-
-        // Imposta l'ID di sessione nell'elemento display
-        document.getElementById('sessionIdDisplay').innerText = 'sessionId: ' + getSessionId(); 
-
-        // Funzione per ottenere l'ID di sessione dal local storage o generarne uno nuovo
-        function getSessionId() {
-            const storedSessionId = localStorage.getItem('sessionId');
-
-            if (storedSessionId) {
-                return storedSessionId;
-            } else {
-                const newSessionId = generateSessionId();
-                localStorage.setItem('sessionId', newSessionId);
-                return newSessionId;
-            }
-        }
-
-        // Funzione per generare un nuovo ID di sessione
-        function generateSessionId() {
-            return Math.random().toString(36).substr(2, 9);
-        }
+      // Funzione per generare un nuovo ID di sessione
+      function generateSessionId() {
+        return Math.random().toString(36).substr(2, 9);
+      }
     </script>
-
-</body>
-
+  </body>
+    <script src="../static/script.js"></script>
 </html>

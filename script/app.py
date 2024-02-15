@@ -35,7 +35,6 @@ def prova():
 # Route per il server Flask
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    print("ho chiamato il webhook")
     body = request.get_json()
     request_parameters = get_parameters(body)
     session_id = body["session"]
@@ -69,10 +68,8 @@ def webhook():
             corso = get_course_info(session_parameters)
 
         if corso:
-            print("ho trovato il corso e questo è il risultato:", corso)
             request_parameters.update(corso)
         else:
-            print("corso non trovato")
             filtered_request_parameters = filter_non_empty_parameters(
                 request_parameters
             )
@@ -98,7 +95,7 @@ def webhook():
         if menu:
             request_parameters.update(menu)
         else:
-            print("menu non trovato")
+    
             return jsonify(
                 {"query_text": [{"text": {"text": ["Errore menu non trovato"]}}]}
             )
@@ -132,7 +129,7 @@ LANGUAGE_CODE = "it-IT"
 
 @app.route("/Chatbot", methods=["POST"])
 def send_text_message_to_dialogflow():
-    print("ho chiamato correttamente l'api")
+    
     try:
         body = request.get_json()
         text_message = body["message"]
@@ -142,12 +139,13 @@ def send_text_message_to_dialogflow():
 
         # Crea le credenziali dal percorso del file JSON (auth/auth.json)
         credentials_path = os.path.join(
-            os.path.dirname(__file__), "../auth", "auth.json"
+            os.path.dirname(__file__), "..", "auth.json"
         )
         credentials = service_account.Credentials.from_service_account_file(
             credentials_path
         )
-        # Estrai il campo project_id dal file JSON delle credenziali
+
+        print(credentials)  # Estrai il campo project_id dal file JSON delle credenziali
         project_id = credentials.project_id
 
         session_client = dialogflow_v2.SessionsClient(credentials=credentials)
@@ -169,8 +167,6 @@ def send_text_message_to_dialogflow():
             fulfillment_text = responses.query_result.fulfillment_messages[0].text.text[
                 0
             ]
-            print("testo risposta: ", fulfillment_text)
-            print("sessione : ", session_id)
             # Restituisci il testo di fulfillment e l'ID di sessione come risposta JSON
             return jsonify({"message": fulfillment_text, "session": session_id})
         else:
@@ -265,6 +261,12 @@ def get_day_of_week(date_string):
 
     return day_of_week
 
+
+MODE = "local"
+
 # Avvia il server Flask
 if __name__ == "__main__":
-    serve(app, host="0.0.0.0", port=50100, threads=3, url_prefix="/universe")
+    if (MODE=="local"):  # Verifica se si sta eseguendo in un terminale
+        app.run()
+    else:
+        serve(app, host="0.0.0.0", port=50100, threads=3, url_prefix="/universe")
